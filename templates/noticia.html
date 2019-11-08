@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{siteName}}</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{siteUrl}}/assets/css/app.css">
+</head>
+<body>
+  {{ include('layouts/_header') }}
+
+  <div class="la-noticia container mx-auto px-48">
+    {% set theImage = entry.imagen.one %}
+    <div class="img" style="background-image: url('{{ theImage.url }}')"></div>
+    <h1>{{entry.encabezado}}</h1>
+    <p class="bajada">
+      {{entry.bajada}}
+    </p>
+    <div class="inner-noticia">
+      {{entry.contenido}}
+    </div>
+  </div>
+
+  {{include('layouts/_footer')}}
+</body>
+</html>

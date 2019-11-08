@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{siteName}}</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{siteUrl}}/assets/css/app.css">
+</head>
+<body>
+  {{ include('layouts/_header') }}
+
+  <div class="container mx-auto items pb-10">
+    {% set myEntryQuery = craft.entries().section('noticias').limit(10) %}
+    {% set entries = myEntryQuery.all() %}
+    {% for entry in entries %}
+    <a href="{{entry.url}}">
+      <div class="item mb-8">
+        <div class="img w-ful bg-gray-300 mb-3" style="background-image: url('{{entry.imagen.one.url}}')"></div>
+        <h4 class="font-bold mb-0">{{entry.encabezado}}</h4>
+        <p>{{entry.postDate | date("M d, Y")}}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="global-section bg-teal-100">
+    <div class="inner-global container mx-auto text-center max-w-lg py-32">
+      <h1 class="text-4xl font-bold mb-4 ">{{papasFritas.tituloCta}}</h1>
+      <p class="text-gray-700">{{papasFritas.descripcionCta}}</p>
+    </div>
+  </div>
+
+  {{include('layouts/_footer')}}
+</body>
+</html>
